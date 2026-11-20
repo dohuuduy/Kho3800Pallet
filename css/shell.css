@@ -17,3 +17,4 @@
 #t{display:none}
 #b{left:calc(var(--sbw,0px) + 10px)}
 #nt{left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom,0px));max-width:80%;z-index:7;font-size:13px}
+.at{width:100%;font-size:12px;border-collapse:collapse;margin-top:4px}.at td{padding:2px 3px;border-bottom:1px solid var(--ln);overflow-wrap:anywhere}.at td:last-child{text-align:right;white-space:nowrap}
