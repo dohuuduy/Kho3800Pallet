@@ -1,0 +1,14 @@
+
+:root{--bg:#dfe7ec;--fg:#16242f;--card:rgba(255,255,255,.93);--ac:#14618f;--ln:#b9c8d2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a22;--fg:#e3edf3;--card:rgba(22,33,42,.93);--ac:#6bb8ea;--ln:#2f4452}}
+:root[data-theme="dark"]{--bg:#0f1a22;--fg:#e3edf3;--card:rgba(22,33,42,.93);--ac:#6bb8ea;--ln:#2f4452}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 "Be Vietnam Pro","Segoe UI",Roboto,Arial,sans-serif;overflow:hidden}
+#c{position:absolute;inset:0}
+.p{position:absolute;background:var(--card);border:1px solid var(--ln);border-radius:8px;padding:10px 12px}
+#t{left:10px;top:calc(10px + env(safe-area-inset-top,0px));max-width:min(340px,calc(100% - 20px))}
+#t b{font-size:15px}#t span{display:block;opacity:.8;font-size:12px;margin-top:2px}
+#b{left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+button{font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--ln);border-radius:6px;padding:6px 10px;cursor:pointer}
+button:hover,button.on{border-color:var(--ac);color:var(--ac)}button:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+#ly{right:10px;top:calc(10px + env(safe-area-inset-top,0px));width:236px;max-height:calc(100% - 150px);overflow:auto;font-size:13px}#ly label{display:block}#ly summary{cursor:pointer}.r{margin-top:8px;border-top:1px solid var(--ln);padding-top:6px;font-size:12px}#ly table{border-collapse:collapse;width:100%}#ly td{padding:1px 3px;vertical-align:top}#cut{width:100%}#rm{left:10px;width:min(340px,calc(100% - 20px));box-sizing:border-box;max-height:34vh;overflow:auto;font-size:13px}#rs{width:100%;font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--ln);border-radius:6px;padding:5px}#ri{margin-top:6px;font-size:12px;overflow-wrap:anywhere}#ri b{display:block;font-size:13px}#ly{box-sizing:border-box;overflow-x:hidden}#ly,#ly td,#ly label{overflow-wrap:anywhere;word-break:break-word}#ly td:first-child{white-space:nowrap;padding-right:6px}#ly td:nth-child(2){white-space:nowrap}.r button{padding:3px 7px;margin:2px 2px 0 0;font-size:12px}
