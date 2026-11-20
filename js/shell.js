@@ -2,7 +2,7 @@
 (function(){
 const $=id=>document.getElementById(id),nz=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d');
 const px=new THREE.Plane(new THREE.Vector3(-1,0,0),1e3),pz=new THREE.Plane(new THREE.Vector3(0,0,-1),1e3);R.clippingPlanes=[pl,pz,px];
-const chung=['grid','dim','lab'],keys=()=>LAY.map(l=>l[0]),dOf=k=>LAYD[k]||'chung';
+const chung=['grid','dim','lab','area'],keys=()=>LAY.map(l=>l[0]),dOf=k=>LAYD[k]||'chung';
 let sbo=innerWidth>=900;
 function setLayer(k,on){G[k].visible=on;if(k=='shell')sh=on?(sh==2?0:sh):2;if(k=='roof')rf=on?1:0;if(k=='lab')lb=on?1:0}
 function secs(x,z){px.constant=x>=74.9?1e3:x;pz.constant=z>=34.9?1e3:z;const sx=$('sx'),sz=$('sz');if(sx){sx.value=Math.min(x,75);sz.value=Math.min(z,35);$('vx').textContent=x>=74.9?'tắt':'x ≤ '+(+x).toFixed(1);$('vz').textContent=z>=34.9?'tắt':'z ≤ '+(+z).toFixed(1)}D=1}
@@ -26,6 +26,8 @@ function side(){const c=$('sbc');const sec=(t,o)=>{const d=document.createElemen
   b.onclick=()=>{if(v=='info'){$('ly').open=true;note('Thông tin PCCC nằm trong bảng bên phải')}else if(v)show(v);else note('Bản vẽ này chưa có mô phỏng 3D')};d.appendChild(b)});
  d=sec('Mặt cắt dọc',0);d.insertAdjacentHTML('beforeend','<label>Cắt theo trục X <b id="vx">tắt</b><input id="sx" type="range" min="0" max="75" step=".1" value="75"></label><label>Cắt theo trục Z <b id="vz">tắt</b><input id="sz" type="range" min="0" max="35" step=".1" value="35"></label>');
  d=sec('Phòng',0);d.appendChild($('rm'));
+ if(typeof SHEETS_D!='undefined'){d=sec('Bản vẽ điện (Đ:00 đến Đ:15)',1);d.insertAdjacentHTML('beforeend','<div class="lg">Nguồn: Dien.pdf</div>');SHEETS_D.forEach(([no,n,st,v])=>{const b=document.createElement('button');b.className='it sh';b.innerHTML='<span class="d'+st+'">●</span> Đ:'+String(no).padStart(2,'0')+' '+n;b.dataset.q=nz('d'+no+' dien '+n);b.onclick=()=>{if(v)show(v);else note('Bản vẽ này chưa có mô phỏng 3D')};d.appendChild(b)})}
+ if(typeof SHEETS_N!='undefined'){d=sec('Bản vẽ nước (N:01 đến S:11)',1);d.insertAdjacentHTML('beforeend','<div class="lg">Nguồn: Nuoc.pdf</div>');SHEETS_N.forEach(([no,n,st,v])=>{const b=document.createElement('button');b.className='it sh';b.innerHTML='<span class="d'+st+'">●</span> '+no+' '+n;b.dataset.q=nz(no+' nuoc '+n);b.onclick=()=>{if(v)show(v);else note('Bản vẽ này chưa có mô phỏng 3D')};d.appendChild(b)})}
  $('sx').oninput=e=>secs(+e.target.value,+$('sz').value);$('sz').oninput=e=>secs(+$('sx').value,+e.target.value);
  $('q').oninput=e=>{const q=nz(e.target.value.trim());document.querySelectorAll('.it.sh').forEach(b=>b.hidden=!!q&&!b.dataset.q.includes(q))}}
 function sbw(){$('sb').classList.toggle('shut',!sbo);document.documentElement.style.setProperty('--sbw',sbo?'300px':'0px')}
