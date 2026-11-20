@@ -60,7 +60,7 @@ function lv(w,h,rx,ry){const c=document.createElement('canvas');c.width=c.height
 const L1=lv(24,4,24,4);L1.rotation.y=Math.PI/2;L1.position.set(55.3,8.35,12);G.shell.add(L1);
 const L2=lv(17.7,4,17.7,4);L2.position.set(64.15,8.35,6);G.shell.add(L2);
 // partitions
-for(let z=5;z<=25;z+=5)bx(G.part,48.05,6.35,z-.07,52.5,10.35,z+.07,partM);
+[6.1,10.86,15.62,20.38,25.14].forEach(z=>bx(G.part,48.05,6.35,z-.07,52.45,10.35,z+.07,partM));
 bx(G.part,52.4,6.35,6.6,52.6,10.35,30,partM);bx(G.part,48.05,1.35,5.9,52.5,6.2,6.1,partM);
 bx(G.part,65.4,.6,0,65.6,6.2,6,partM);bx(G.part,57.9,.6,0,58.1,6.2,6,partM);bx(G.part,59.4,6.35,0,59.6,10.35,6,partM);bx(G.part,55.3,6.35,3.9,73,10.35,4.1,partM);
 // hydraulic lifts in loading-wait room
@@ -71,14 +71,14 @@ stair(53.1,1.2,1,1,1.35,2.5,15,4.2);bx(G.stair,52.5,3.7,5.2,55.3,3.85,6.6,stM);s
 bx(G.inner,52.5,1.35,.3,52.55,1.4,.35,stM);
 // labels
 [['Kho lạnh – 6 tầng kệ',26,16,15,11],['Phòng đóng gói',2.4,3,15,5],['Kho bao bì',24,3,32.3,6],['Phòng chờ xuất hàng',50.3,3.4,18,7],['Thang ST1',54,8.4,3.3,4],['P. KT&XBCB',61.7,4,3,5],['P. TCHC',69.3,4,3,5],['P. KTTC',66.2,8.6,2,5],['WC',56.7,8.6,2,2],
- ['PTGĐ TTr',50.3,8.6,2.5,4],['Phòng họp',50.3,8.6,7.5,4],['PTGĐ Ns',50.3,8.6,12.5,4],['TGĐ',50.3,8.6,17.5,3],['PTGĐ KD',50.3,8.6,22.5,4],['KDXNK',50.3,8.6,27.5,4]].forEach(a=>lab(a[0],a[2],a[3],a[4],a[5]||5));
+ ['PTGĐ TTr',50.3,8.6,3,4],['Phòng họp',50.3,8.6,8.6,4],['PTGĐ Ns',50.3,8.6,13.3,4],['TGĐ',50.3,8.6,18.1,3],['PTGĐ KD',50.3,8.6,22.9,4],['KDXNK',50.3,8.6,27.6,4]].forEach(a=>lab(a[0],a[2],a[3],a[4],a[5]||5));
 // ---- doors and windows (schedule KT:30-31; positions approximate) ----
 const DT={D01:[1.7,3,0xe8a33a],D02:[.9,2.2,0x8a5a34],D03:[.9,2.8,0x8a5a34],D04:[2,2.8,0x4f7ca3],D05:[2.2,2.5,0x4f7ca3],Dw1:[.8,2.2,0x9b7b55],DC1:[.9,2.2,0xe9eef2],RD1:[2.5,3,0xd9552b],W01:[2.4,1.8,0x4aa3dc],W03:[.6,.6,0x4aa3dc]};
 function dr(t,ax,x,z,y0){const [w,h,c]=DT[t],X=ax=='x';const o=new T.Mesh(new T.BoxGeometry(X?.4:w,h,X?w:.4),M(c,{roughness:.5}));o.position.set(x,y0+h/2,z);G.door.add(o);lab(t,x,y0+h+.45,z,Math.max(1.8,w),G.door,'rgba(120,70,20,.92)')}
 [7,15,24,28.5].forEach(z=>dr('D01','x',48.05,z,1.35));[10,16,30,38].forEach(x=>dr('D01','z',x,30,1.35));
 [2.5,7.5,12.5,17.5,22.5,27.5].forEach(z=>dr('DC1','x',4.83,z,1.35));[10,30.8].forEach(x=>dr('RD1','z',x,34.5,.2));
 [[49.5,5.9,1.35],[51.5,5.9,1.35],[61.7,6,.6],[69.3,6,.6]].forEach(a=>dr('D02','z',a[0],a[1],a[2]));dr('D02','x',.1,32,.2);dr('D02','x',48.05,32.5,.2);
-[8,17,26].forEach(z=>dr('D03','x',55.3,z,1.35));[12.5,17.5,22.5].forEach(z=>dr('D03','x',52.5,z,6.35));
+[8,17,26].forEach(z=>dr('D03','x',55.3,z,1.35));[13.3,18.1,22.9].forEach(z=>dr('D03','x',52.5,z,6.35));
 dr('D04','z',63.5,6,.6);dr('D04','z',71.5,6,.6);dr('D05','x',73,3.5,.6);dr('Dw1','x',58,3,.6);dr('Dw1','x',59.5,2,6.35);
 [61.7,69.3].forEach(x=>dr('W01','z',x,.1,1.5));[61.7,66.5,70.5].forEach(x=>dr('W01','z',x,.1,7.2));dr('W01','x',73,3,7.2);
 [[56.7,.1,3.5],[56.7,.1,8.3],[50,29.9,3],[50,29.9,8]].forEach(a=>dr('W03','z',a[0],a[1],a[2]));
@@ -98,7 +98,7 @@ dim([52.5,7,-.8],[55.3,7,-.8],'ST1 2,80',3);dim([55.8,7,0],[55.8,7,6.2],'6,20',2
 // ---- site (KT:03-05, approximate) ----
 function pl2(g,x0,z0,x1,z1,m,y=.03){const o=new T.Mesh(new T.PlaneGeometry(x1-x0,z1-z0).rotateX(-Math.PI/2),m);o.position.set((x0+x1)/2,y,(z0+z1)/2);g.add(o)}
 const asph=M(0x3d4349);pl2(G.site,-100,37.4,95,49.6,asph);pl2(G.site,76,-60,92,49.6,asph);pl2(G.site,-88,37.6,76,43.4,M(0x9a3030),.04);pl2(G.site,-165,-90,-100,70,M(0x3b82b8));
-bx(G.site,-84.6,0,3.2,-3.2,8.5,36,M(0xb9bfc4));bx(G.site,-86.7,0,-29.6,-22.2,7.5,-1,M(0xc7b8b8));
+bx(G.site,-84.6,0,3.2,-3.2,8.5,36,M(0xb9bfc4));bx(G.site,-86.7,0,-32,-22.2,7.5,-4,M(0xc7b8b8));
 [['Đường nội bộ số 1 (6,0 + 6,2 m)',5,.8,46.5,16],['Đường cho xe chữa cháy 40T, rộng 6 m',-45,.8,40.5,16],['Đường Cao Thắng (nhựa), lề 8 m',84,.8,15,14],['Sông Gành Hào',-132,.8,0,14],['Khối phân xưởng 196 hiện trạng (2.687 m²)',-44,9.5,20,18],['Khối phân xưởng 118 hiện trạng (2.055 m²)',-54,8.5,-15,18],['Khu đất 12.608,5 m², mật độ xây dựng 54,43%',36,.8,-17,20]].forEach(a=>lab(a[0],a[1],a[2],a[3],a[4],G.site));
 // ---- external inox escape stair (KT:23): 37 risers up to FL+6.150 ----
 const inox=M(0x9aa5ae,{metalness:.5,roughness:.4}),H4=6.15/4;
@@ -130,11 +130,11 @@ const RM=[['Kho lạnh, 6 tầng kệ (3.800 pallet)',4.83,48.05,0,30,1.35,12.65
 ['P. TCHC (tầng 1)',65.5,73,0,6,.6,5.6,'FL+0,600. Trần thạch cao chống ẩm C.2. Cửa D02, D04, D05 (cánh lùa), cửa sổ W01.'],
 ['WC tầng 1',55.3,58,0,6,.6,5.6,'FL+0,600. Nền F.1.3 granite 400 chống trượt, ốp gạch cao tới trần, vách compact dày 15, lavabo đá granite. Cửa Dw1.'],
 ['WC tầng 2',55.3,59.4,0,6,6.35,4,'FL+6,350. Nền granite 400 chống trượt, vách compact dày 15. Cửa Dw1.'],
-['P. KTTC (tầng 2)',59.6,73,0,3.9,6.35,4,'FL+6,350. Sàn F.n.1 granite 800. Mái kính an toàn 12,76 mm, khung thép.'],
+['P. KTTC (tầng 2)',59.4,73,0,3.9,6.35,4,'FL+6,350. Sàn F.n.1 granite 800. Mái kính an toàn 12,76 mm, khung thép.'],
 ['Hành lang tầng 2',55.3,73,3.9,6,6.31,4,'FL+6,310. Lan can hành lang, lát gạch granite 400 chống trượt (KT:24).'],
 ['Cầu thang ST1',52.5,55.3,1,6.6,1.35,9,'Thang bê tông 2 vế, 30 bậc cao 166, rộng 2,8 × 6,2 m. Mặt bậc phủ granite dày 20, tay vịn inox Ø49 (KT:22).'],
 ['Thang thoát hiểm inox',48.4,53.5,31.4,34.4,0,6.15,'FL±0,000 lên FL+6,150, 37 bậc. Inox 304, mặt bậc lá đúc dày 5 (KT:23).']];
-['PTGĐ TTr','Phòng họp','PTGĐ Ns','TGĐ','PTGĐ KD','KDXNK'].forEach((n,i)=>RM.push(['Tầng 2: '+n,48.05,52.5,i*5,i*5+5,6.35,4,'FL+6,350. Sàn F.n.1 granite 800, tường gạch ống 200, cửa D03, cửa sổ W01, VK.']));
+['PTGĐ TTr','Phòng họp','PTGĐ Ns','TGĐ','PTGĐ KD','KDXNK'].forEach((n,i)=>RM.push(['Tầng 2: '+n,48.05,52.45,i?6.2+(i-1)*4.76:0,i?6.2+i*4.76:6,6.35,4,'FL+6,350. Sàn F.n.1 granite 800, tường gạch ống 200, cửa D03, cửa sổ W01, VK.']));
 const hl=new T.Group(),hb=new T.Mesh(new T.BoxGeometry(1,1,1),new T.MeshBasicMaterial({color:0xff8a00,transparent:true,opacity:.28,depthTest:false})),he=new T.LineSegments(new T.EdgesGeometry(new T.BoxGeometry(1,1,1)),new T.LineBasicMaterial({color:0xff6a00,depthTest:false}));
 hb.renderOrder=11;he.renderOrder=12;hl.add(hb,he);hl.visible=false;scene.add(hl);
 const rs=document.getElementById('rs'),ri=document.getElementById('ri');
