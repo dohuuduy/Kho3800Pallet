@@ -19,7 +19,7 @@ function bx(g,x0,y0,z0,x1,y1,z1,m){const o=new T.Mesh(new T.BoxGeometry(x1-x0,y1
 const gr=new T.Mesh(new T.PlaneGeometry(340,240),M(0x8f9a8a));gr.rotation.x=-Math.PI/2;gr.position.set(-10,-.02,0);scene.add(gr);
 bx(G.inner,55.3,0,6,73,.05,34.5,M(0xa8abad));
 function lab(t,x,y,z,s=6,g=G.lab,bg='rgba(18,44,64,.85)'){const c=document.createElement('canvas');c.width=512;c.height=96;const q=c.getContext('2d');q.font='bold 44px sans-serif';const W=Math.max(160,Math.ceil(q.measureText(t).width)+44);c.width=W;q.fillStyle=bg;q.fillRect(0,0,W,96);q.fillStyle='#fff';q.font='bold 44px sans-serif';q.textAlign='center';q.textBaseline='middle';q.fillText(t,W/2,50);
- const sp=new T.Sprite(new T.SpriteMaterial({map:new T.CanvasTexture(c),depthTest:false,transparent:true}));sp.scale.set(s*W/512,s*96/512,1);sp.position.set(x,y,z);sp.renderOrder=10;g.add(sp)}
+ const sp=new T.Sprite(new T.SpriteMaterial({map:new T.CanvasTexture(c),depthTest:false,transparent:true}));sp.scale.set(s*W/512,s*96/512,1);sp.position.set(x,y,z);sp.renderOrder=10;sp.userData.text=t;g.add(sp)}
 const AX=[0,6.65,13.55,20.45,27.35,34.25,41.15,48.05,52.5,55.3,59.4,66.2,73],AY=[0,6,12,18,24,30,34.5];
 AX.forEach((x,i)=>{lab('1X'+(i+1),x,.6,-3,2.4,G.grid);bx(G.grid,x-.03,0,-1.5,x+.03,.03,35.5,M(0x3b6a8a))});
 AY.forEach((z,i)=>{lab('1Y'+(i+1),-3.5,.6,z,2.4,G.grid);bx(G.grid,-2,0,z-.03,74,.03,z+.03,M(0x3b6a8a))});
@@ -74,7 +74,7 @@ bx(G.inner,52.5,1.35,.3,52.55,1.4,.35,stM);
  ['PTGĐ TTr',50.3,8.6,3,4],['Phòng họp',50.3,8.6,8.6,4],['PTGĐ Ns',50.3,8.6,13.3,4],['TGĐ',50.3,8.6,18.1,3],['PTGĐ KD',50.3,8.6,22.9,4],['KDXNK',50.3,8.6,27.6,4]].forEach(a=>lab(a[0],a[2],a[3],a[4],a[5]||5));
 // ---- doors and windows (schedule KT:30-31; positions approximate) ----
 const DT={D01:[1.7,3,0xe8a33a],D02:[.9,2.2,0x8a5a34],D03:[.9,2.8,0x8a5a34],D04:[2,2.8,0x4f7ca3],D05:[2.2,2.5,0x4f7ca3],Dw1:[.8,2.2,0x9b7b55],DC1:[.9,2.2,0xe9eef2],RD1:[2.5,3,0xd9552b],W01:[2.4,1.8,0x4aa3dc],W03:[.6,.6,0x4aa3dc]};
-function dr(t,ax,x,z,y0){const [w,h,c]=DT[t],X=ax=='x';const o=new T.Mesh(new T.BoxGeometry(X?.4:w,h,X?w:.4),M(c,{roughness:.5}));o.position.set(x,y0+h/2,z);G.door.add(o);lab(t,x,y0+h+.45,z,Math.max(1.8,w),G.door,'rgba(120,70,20,.92)')}
+function dr(t,ax,x,z,y0){const [w,h,c]=DT[t],X=ax=='x';const o=new T.Mesh(new T.BoxGeometry(X?.4:w,h,X?w:.4),M(c,{roughness:.5}));o.position.set(x,y0+h/2,z);G.door.add(o);o.userData.code=t;o.userData.w=w;o.userData.h=h;lab(t,x,y0+h+.45,z,Math.max(1.8,w),G.door,'rgba(120,70,20,.92)')}
 [7,15,24,28.5].forEach(z=>dr('D01','x',48.05,z,1.35));[10,16,30,38].forEach(x=>dr('D01','z',x,30,1.35));
 [2.5,7.5,12.5,17.5,22.5,27.5].forEach(z=>dr('DC1','x',4.83,z,1.35));[10,30.8].forEach(x=>dr('RD1','z',x,34.5,.2));
 [[49.5,5.9,1.35],[51.5,5.9,1.35],[61.7,6,.6],[69.3,6,.6]].forEach(a=>dr('D02','z',a[0],a[1],a[2]));dr('D02','x',.1,32,.2);dr('D02','x',48.05,32.5,.2);
